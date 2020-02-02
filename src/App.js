@@ -3,6 +3,8 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
 import IndexPage from './pages/index';
 import Show from './pages/Show';
+import Navbar from './components/Navbar';
+import New from './pages/New';
 
 class App extends Component {
 	state = {
@@ -21,15 +23,44 @@ class App extends Component {
 			}
 		}
 	};
+
+	handleSave = (note) => {
+		const ids = Object.keys(this.state.notes);
+		const id = Math.max(...ids) + 1;
+
+		note['_id'] = id;
+
+		const { notes } = this.state;
+
+		this.setState({
+			notes: {
+				...notes,
+				[id]: note
+			}
+		});
+
+		return id;
+	};
+
 	render() {
 		return (
 			<BrowserRouter>
-				<Route exact path="/" component={(props) => <IndexPage {...props} notes={this.state.notes} />} />
-				<Route
-					exact
-					path="/notes/:id"
-					component={(props) => <Show {...props} note={this.state.notes[props.match.params.id]} />}
-				/>
+				<div className="App">
+					<Navbar />
+					<div className="App-content">
+						<Route
+							exact
+							path="/"
+							component={(props) => <IndexPage {...props} notes={this.state.notes} />}
+						/>
+						<Route
+							exact
+							path="/notes/:id"
+							component={(props) => <Show {...props} note={this.state.notes[props.match.params.id]} />}
+						/>
+						<Route exact path="/new" component={(props) => <New {...props} onSave={this.handleSave} />} />
+					</div>
+				</div>
 			</BrowserRouter>
 		);
 	}
