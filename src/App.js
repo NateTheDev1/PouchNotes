@@ -5,30 +5,24 @@ import IndexPage from './pages/index';
 import Show from './pages/Show';
 import Navbar from './components/Navbar';
 import New from './pages/New';
+import DB from './db';
 
 class App extends Component {
 	state = {
-		notes: {
-			1: {
-				_id: 1,
-				title: 'Hello',
-				body: 'This is the body of the note.',
-				updatedAt: new Date()
-			},
-			2: {
-				_id: 2,
-				title: 'Hello from note 2',
-				body: 'This is the body of the note. number 2',
-				updatedAt: new Date()
-			}
-		}
+		db: new DB('Notes'),
+		notes: {}
 	};
 
-	handleSave = (note) => {
-		const ids = Object.keys(this.state.notes);
-		const id = Math.max(...ids) + 1;
+	async componentDidMount() {
+		const notes = await this.state.db.getAllNotes();
 
-		note['_id'] = id;
+		this.setState({
+			notes
+		});
+	}
+
+	handleSave = async (note) => {
+		let { id } = await this.state.db.createNote(note);
 
 		const { notes } = this.state;
 

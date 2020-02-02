@@ -19,10 +19,10 @@ export default class New extends Component {
 		});
 	};
 
-	handleSave = (e) => {
+	handleSave = async (e) => {
 		e.preventDefault();
 
-		const id = this.props.onSave(this.state.note);
+		const id = await this.props.onSave(this.state.note);
 		this.props.history.replace(`/notes/${id}`);
 	};
 
