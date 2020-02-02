@@ -1,0 +1,13 @@
+.Links {
+	text-decoration: none;
+	color: white;
+}
+
+.LinkDiv {
+	box-sizing: border-box;
+	text-align: center;
+	width: 100%;
+	border-radius: 5px;
+	height: 50px;
+	background: black;
+}
