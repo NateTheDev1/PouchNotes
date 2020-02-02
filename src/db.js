@@ -18,7 +18,7 @@ export default class DB {
 		note.createdAt = new Date();
 		note.updatedAt = new Date();
 
-		const res = await this.dv.post({ ...note });
+		const res = await this.db.post({ ...note });
 
 		return res;
 	}
