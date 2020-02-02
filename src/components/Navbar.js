@@ -6,10 +6,12 @@ export default class Navbar extends Component {
 		return (
 			<nav className="Navbar">
 				<h1>
-					<Link to="/">Pouch Notes</Link>
+					<Link to="/" className="Link">
+						Pouch Notes
+					</Link>
 				</h1>
 				<div className="Navbar-buttons">
-					<Link to="/new" className="btn">
+					<Link to="/new" className="btn Link">
 						New Note
 					</Link>
 				</div>

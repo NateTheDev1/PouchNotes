@@ -7,7 +7,8 @@ export default class IndexPage extends Component {
 		return (
 			<div>
 				<h1>Notes</h1>
-				<NoteList notes={this.props.notes} />
+				<hr />
+				<NoteList notes={notes} />
 			</div>
 		);
 	}

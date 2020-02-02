@@ -8,7 +8,8 @@ export default class New extends Component {
 			body: '',
 			createdAt: undefined,
 			updatedAt: undefined
-		}
+		},
+		loading: false
 	};
 
 	updateValue = (e) => {
@@ -20,32 +21,42 @@ export default class New extends Component {
 	};
 
 	handleSave = async (e) => {
-		e.preventDefault();
-
-		const id = await this.props.onSave(this.state.note);
-		this.props.history.replace(`/notes/${id}`);
+		this.setState({ loading: true });
+		const id = this.props.onSave(this.state.note);
+		setTimeout(() => {
+			window.location.href = '/';
+		}, 0);
+		// this.props.history.replace(`/notes/${id}`);
+		// this.props.history.push(`/`);
 	};
 
 	render() {
 		const { note } = this.state;
-
-		return (
-			<div className="Note-Form">
-				<h1>New Note</h1>
-				<form onSubmit={this.handleSave}>
-					<div className="Note-Form-title">
-						<label>Title</label>
-						<input type="text" name="title" value={note.title} onChange={this.updateValue} />
-					</div>
-					<div>
-						<textarea name="body" value={note.body} onChange={this.updateValue} />
-					</div>
-					<div>
-						<button className="btn">Save</button>
-						<Link to="/">Cancel</Link>
-					</div>
-				</form>
-			</div>
-		);
+		if (this.state.loading) {
+			return (
+				<div>
+					<h2>Loading...</h2>
+				</div>
+			);
+		} else {
+			return (
+				<div className="Note-Form">
+					<h1>New Note</h1>
+					<form onSubmit={this.handleSave}>
+						<div className="form-title">
+							<label>Title: </label>
+							<input type="text" name="title" value={note.title} onChange={this.updateValue} />
+						</div>
+						<div>
+							<textarea name="body" value={note.body} onChange={this.updateValue} className="note-body" />
+						</div>
+						<div>
+							<button className="btn">Save</button>
+							<Link to="/">Cancel</Link>
+						</div>
+					</form>
+				</div>
+			);
+		}
 	}
 }
