@@ -5,11 +5,14 @@ export default class Navbar extends Component {
 	render() {
 		return (
 			<nav className="Navbar">
-				<h1>
-					<Link to="/" className="Link">
-						Pouch Notes
-					</Link>
-				</h1>
+				<div>
+					<h1>
+						<Link to="/" className="Link">
+							Pouch Notes
+						</Link>
+					</h1>
+				</div>
+				<h1 className="version">Version 0.3</h1>
 				<div className="Navbar-buttons">
 					<Link to="/new" className="btn Link">
 						New Note

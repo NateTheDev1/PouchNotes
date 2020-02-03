@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './New.css';
 
 export default class New extends Component {
 	state = {
@@ -44,15 +45,28 @@ export default class New extends Component {
 					<h1>New Note</h1>
 					<form onSubmit={this.handleSave}>
 						<div className="form-title">
-							<label>Title: </label>
-							<input type="text" name="title" value={note.title} onChange={this.updateValue} />
+							<input
+								type="text"
+								name="title"
+								value={note.title}
+								onChange={this.updateValue}
+								placeholder="Title"
+							/>
 						</div>
 						<div>
-							<textarea name="body" value={note.body} onChange={this.updateValue} className="note-body" />
+							<textarea
+								name="body"
+								value={note.body}
+								onChange={this.updateValue}
+								className="note-body"
+								placeholder="Body"
+							/>
 						</div>
 						<div>
-							<button className="btn">Save</button>
-							<Link to="/">Cancel</Link>
+							<button className="btn Save">Save</button>
+							<Link to="/" className="cancel">
+								Cancel
+							</Link>
 						</div>
 					</form>
 				</div>
