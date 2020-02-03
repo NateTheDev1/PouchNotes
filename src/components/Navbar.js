@@ -12,7 +12,7 @@ export default class Navbar extends Component {
 						</Link>
 					</h1>
 				</div>
-				<h1 className="version">Version 0.3</h1>
+				<h1 className="version">Version 0.4</h1>
 				<div className="Navbar-buttons">
 					<Link to="/new" className="btn Link">
 						New Note
